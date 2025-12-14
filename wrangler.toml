@@ -1,0 +1,30 @@
+# 你的 Worker 名称
+name = "db-keep-alive"
+
+# Worker 入口点
+main = "src/index.js"
+
+# 兼容性日期
+compatibility_date = "2025-02-04"
+
+# 需要 Node.js 兼容模式以使用 postgres 驱动
+compatibility_flags = ["nodejs_compat"]
+
+# Cron 触发器 - 每 5 分钟执行一次
+# 参考: https://developers.cloudflare.com/workers/wrangler/configuration/#triggers
+[triggers]
+crons = ["*/5 * * * *"]
+
+# 环境变量
+# 参考: https://developers.cloudflare.com/workers/wrangler/configuration/#variables
+# 暂无其他环境变量需要配置
+
+# Hyperdrive 绑定配置
+# 您可以绑定多个 Hyperdrive 来同时保活多个数据库
+# [[hyperdrive]]
+# binding = "HYPERDRIVE_1"
+# id = "第一个数据库的ID"
+
+# [[hyperdrive]]
+# binding = "HYPERDRIVE_2"
+# id = "第二个数据库的ID"
