@@ -1,6 +1,6 @@
 # PostgreSQL 数据库保活 Worker
 
-[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/YOUR_USERNAME/db-keep-alive-worker)
+[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/bu-wei/db-keep-alive-worker)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Cloudflare Workers](https://img.shields.io/badge/Cloudflare-Workers-F38020?logo=cloudflare&logoColor=white)](https://workers.cloudflare.com/)
 
@@ -86,7 +86,7 @@
 3. Clone 到本地：
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/db-keep-alive-worker.git
+git clone https://github.com/bu-wei/db-keep-alive-worker.git
 cd db-keep-alive-worker
 ```
 

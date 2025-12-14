@@ -1,6 +1,6 @@
 # PostgreSQL Keep-Alive Worker
 
-[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/YOUR_USERNAME/db-keep-alive-worker)
+[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/bu-wei/db-keep-alive-worker)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Cloudflare Workers](https://img.shields.io/badge/Cloudflare-Workers-F38020?logo=cloudflare&logoColor=white)](https://workers.cloudflare.com/)
 
@@ -68,7 +68,7 @@ Visit your Worker URL to see the dashboard!
 
 ```bash
 # Clone your fork
-git clone https://github.com/YOUR_USERNAME/db-keep-alive-worker.git
+git clone https://github.com/bu-wei/db-keep-alive-worker.git
 cd db-keep-alive-worker
 
 # Install dependencies

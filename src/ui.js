@@ -405,6 +405,26 @@ const HTML_STYLE = `
     color: var(--color-plasma-red);
   }
   
+  .metric-tag.success-badge {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.3) 0%, rgba(20, 184, 166, 0.3) 100%);
+    color: #10b981;
+    font-weight: 700;
+    padding: var(--space-xs) var(--space-md);
+    border: 1px solid rgba(16, 185, 129, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .metric-tag.error-badge {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.3) 0%, rgba(244, 63, 94, 0.3) 100%);
+    color: #ef4444;
+    font-weight: 700;
+    padding: var(--space-xs) var(--space-md);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
   /* Usage Panel */
   .usage-panel {
     background: rgba(30, 41, 59, 0.5);
@@ -548,8 +568,16 @@ const HTML_SCRIPT = `
     const isSuccess = result.status === '成功';
     const statusIcon = isSuccess ? '✓' : '✕';
     const statusClass = isSuccess ? 'success' : 'error';
+    const statusText = isSuccess ? '保活成功 Success' : '连接失败 Failed';
     
     let metricsHtml = '';
+    
+    // Add success/failure badge first
+    if (isSuccess) {
+      metricsHtml += \`<span class="metric-tag success-badge">✓ 保活成功</span>\`;
+    } else {
+      metricsHtml += \`<span class="metric-tag error-badge">✕ 连接失败</span>\`;
+    }
     
     if (isSuccess && result.latency !== null) {
       metricsHtml += \`<span class="metric-tag latency">⚡ \${result.latency}ms</span>\`;
@@ -599,8 +627,19 @@ const HTML_SCRIPT = `
       const data = await response.json();
       
       // Update status
-      statusDot.className = 'status-dot';
-      statusText.textContent = \`✨ \${data.summary} • \${data.timestamp}\`;
+      const successCount = data.results ? data.results.filter(r => r.status === '成功').length : 0;
+      const totalCount = data.results ? data.results.length : 0;
+      const allSuccess = successCount === totalCount && totalCount > 0;
+      
+      statusDot.className = allSuccess ? 'status-dot' : 'status-dot error';
+      
+      if (allSuccess) {
+        statusText.textContent = \`🎉 全部保活成功 All Success! (\${successCount}/\${totalCount}) • \${data.timestamp}\`;
+      } else if (totalCount > 0) {
+        statusText.textContent = \`⚠️ 部分成功 (\${successCount}/\${totalCount}) • \${data.timestamp}\`;
+      } else {
+        statusText.textContent = \`✨ \${data.summary} • \${data.timestamp}\`;
+      }
       
       // Render results
       if (data.results && data.results.length > 0) {
